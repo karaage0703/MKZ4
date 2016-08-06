@@ -29,7 +29,6 @@
  */
 
 /* Create a WiFi access point and provide a web server on it. */
-
 #include <ESP8266WiFi.h>
 #include <WiFiClient.h> 
 #include <ESP8266WebServer.h>
@@ -52,6 +51,7 @@ ESP8266WebServer server_8080(8080);
 #define reverse       0x02
 #define servo_left    65
 #define servo_right   110
+#define servo_center   90
 
 #define LED_H       (digitalWrite( 12, HIGH ))
 #define LED_L       (digitalWrite( 12, LOW ))
@@ -202,14 +202,14 @@ void handle_stop() {
 void handle_forward() {
  Serial.print("forward\r\n");
   drive();
-  servo_control(90);
+  servo_control(servo_center);
   server.send(200, "text/html", "");
 }
 
 void handle_back() {
   Serial.print("back\r\n");
   back();
-  servo_control(90);
+  servo_control(servo_center);
   server.send(200, "text/html", "");
 }
 
